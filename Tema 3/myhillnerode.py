@@ -128,7 +128,6 @@ else:
                     if matrix[x][z] == 1 or matrix[y][w] == 1 or matrix[z][x] == 1 or matrix[w][y] == 1:
                         matrix[i][j] = 1
                         ok = false
-    print(matrix)
     counter = int(states[len(states)-1][1]) + 1
     final_state_ok = false
     counter_final_state = -1
@@ -164,7 +163,6 @@ else:
     new_states = []
     old_states = []
     used_states = []
-    print(myhillnerode_transitions)
     for i in range(len(visited)):
         if visited[i] == False:
             new_states.append('q'+str(i))
@@ -179,6 +177,8 @@ else:
         y = final_states[0]
     else:
         y = 'q'+str(counter_final_state)
+    new_start_state = x
+    new_final_state = y
     new_states.append(x)
     new_states.append(y)
     
@@ -236,4 +236,33 @@ else:
                         if (dict_new_states[keyy][k][0] == x and dict_new_states[keyy][k][1] == y)or(dict_new_states[keyy][k][0] == y and dict_new_states[keyy][k][1] == x):
                             cheie = keyy
                 new_dfa[key].append(cheie)
-print(new_dfa)
+
+
+space = "    "               
+print("#")
+print("# comment lines (skip them)")
+print("#")
+print("Sigma:")
+for i in sigma:
+    print(space + str(i))
+print("End")
+print("#")
+print("# comment lines (skip them)")
+print("#")
+print("States:")
+for i in new_states:
+    if i == new_start_state:
+        print(space+str(i)+ ' ,S')
+    elif i == new_final_state:
+        print(space+str(i)+ ' ,F')
+    else:
+        print(space+str(i))
+print("End")
+print("#")
+print("# comment lines (skip them)")
+print("#")
+print("Transitions:")
+for key in new_dfa:
+    for i in range(len(new_dfa[key])):
+        print(space+str(key) +", "+str(sigma[i])+", "+str(new_dfa[key][i]))
+    

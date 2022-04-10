@@ -67,7 +67,7 @@ for line in f:
             f.readline()
             f.readline()
 
-transitions_matrix = [[None for i in range(len(states))] for j in range(len(states))]
+transitions_matrix = [[[] for i in range(len(states))] for j in range(len(states))]
 
 for i in range(len(transitions)):
     if valid_NFA == True:
@@ -79,7 +79,7 @@ for i in range(len(transitions)):
         else:
             x = states.index(a)
             y = states.index(c)
-            transitions_matrix[x][y] = b
+            transitions_matrix[x][y].append(b)
 
 if len(start_state) != 1:
     valid_NFA = False
@@ -89,6 +89,6 @@ elif start_state[0] not in states:
     valid_NFA = False   
 
 if valid_NFA == False:
-    print("Invalid DFA")
+    print("Invalid NFA")
 else:
-    print("Valid DFA")
+    print("Valid NFA")

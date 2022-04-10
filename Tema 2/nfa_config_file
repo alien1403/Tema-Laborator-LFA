@@ -9,19 +9,19 @@ End
 # comment lines (skip them)
 #
 States:
-    q0 ,S
     q1
     q2 ,F
+    q3 ,S
+    q4
+    q5 ,F
 End
 #
 # comment lines (skip them)
 #
 Transitions:
-    q0, a, q0
-    q0, a, q1
-    q0, b, q2
-    q1, b, q1
-    q1, a, q0
-    q2, b, q0
-    q2, b, q1
+    q3, a, q1
+    q3, a, q5
+    q1, b, q2
+    q5, b, q4
+    q2, a, q1
 End

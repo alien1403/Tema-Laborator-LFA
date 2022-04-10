@@ -67,11 +67,11 @@ for line in f:
             f.readline()
             f.readline()
 
-transitions_matrix = [[None for i in range(len(states))] for j in range(len(states))]
+transitions_matrix = [[[] for i in range(len(states))] for j in range(len(states))]
 
 for i in range(len(transitions)):
     if valid_NFA == True:
-        a, b, c = transitions[i].split(",")
+        a,b,c = transitions[i].split(",")
         b = b.strip(" ")
         c = c.strip(" ")
         if a not in states or c not in states or b not in sigma:
@@ -79,7 +79,7 @@ for i in range(len(transitions)):
         else:
             x = states.index(a)
             y = states.index(c)
-            transitions_matrix[x][y] = b
+            transitions_matrix[x][y].append(b)
 
 if len(start_state) != 1:
     valid_NFA = False
@@ -98,9 +98,10 @@ else:
         for k in range(0, len(stack)):
             index = states.index(stack[k])
             for j in range(0, len(states)):
-                if transitions_matrix[index][j] != None:
-                    if transitions_matrix[index][j] == word[i] :
-                        temporary_stack.append(states[j])
+                if len(transitions_matrix[index][j]) != 0:
+                    for litera in transitions_matrix[index][j]:
+                        if litera == word[i] :
+                            temporary_stack.append(states[j])
 
         stack=temporary_stack.copy()
         temporary_stack.clear()

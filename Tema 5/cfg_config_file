@@ -1,0 +1,30 @@
+#
+# commment lines (skip them)
+#
+Terminals:
+    a
+    b
+    c
+End
+#
+# commment lines (skip them)
+#
+Non-Terminals:
+    A
+    B
+    S
+End
+#
+# commment lines (skip them)
+#
+P:
+    S->AB|a
+    A->b|c
+    B->A|b|c
+End
+#
+# commment lines (skip them)
+#
+Start:
+    S
+End
